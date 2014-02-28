@@ -1,0 +1,7 @@
+axel_test_test_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AxelTestTestBundle:Default:index }
+
+axel_test_test_annotation:
+    pattern:  /hello2/{name}
+    defaults: { _controller: AxelTestTestBundle:Default:index2 }

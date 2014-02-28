@@ -1,0 +1,6 @@
+TestBundle:
+    resource: "@AxelTestTestBundle/Resources/config/routing.yml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc

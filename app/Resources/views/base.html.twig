@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Nosween{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/nosween/bootstrap/css/bootstrap.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/nosween/bootstrap/css/darkstrap.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/nosween/bootstrap/css/bootstrap-responsive.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/nosween/css/index.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/nosween/css/inscription.css') }}" type="text/css" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+            <script type="text/javascript" src="{{ asset('bundles/nosween/Javascript/jQuery.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/nosween/Javascript/all.js') }}"></script>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('bundles/nosween/Javascript/messagesFR.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/nosween/Javascript/md5.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/nosween/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/nosween/Javascript/inscription.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/nosween/Javascript/connexion.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
