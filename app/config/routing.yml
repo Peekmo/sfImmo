@@ -1,6 +1,2 @@
-TestBundle:
-    resource: "@AxelTestTestBundle/Resources/config/routing.yml"
-
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /doc
+SfImmoBundle:
+    resource: "@PeekmoSfImmoBundle/Resources/config/routing.yml"

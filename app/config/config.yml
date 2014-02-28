@@ -31,7 +31,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ PeekmoSfImmoBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -66,19 +66,6 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
-nelmio_api_doc:
-    sandbox:
-        authentication:
-            name: "Nosween documentation"
-            show_methods: false
-            delivery: http_basic
-
 sensio_framework_extra:
     view:
         annotations: false
-
-fos_rest:
-    view:
-        view_response_listener: force
-    serializer:
-        serialize_null: true
