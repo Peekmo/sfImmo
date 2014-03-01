@@ -1,3 +1,7 @@
 auth:
   resource: "@PeekmoSfImmoBundle/Controller/AuthController.php"
   type: annotation
+
+default:
+  resource: "@PeekmoSfImmoBundle/Controller/DefaultController.php"
+  type: annotation

@@ -1,1 +1,52 @@
-Hello {{ name }}!
+<!DOCTYPE html>
+<html lang="fr" ng-app="sfImmo">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Entrez chez vous{% endblock %}</title>
+
+    {% stylesheets
+    'bundles/sfimmo/css/bootstrap.css'
+    'bundles/sfimmo/css/sb-admin.css'
+    'bundles/sfimmo/css/all.css'
+    filter='cssrewrite'  %}
+
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+</head>
+<body>
+
+{% block body %}
+
+{% endblock %}
+
+
+<!-- JavaScript -->
+
+
+{% javascripts
+'bundles/sfimmo/js/jquery-1.10.2.js'
+'bundles/sfimmo/js/bootstrap.js'
+'bundles/sfimmo/js/morris/chart-data-morris.js'
+'bundles/sfimmo/js/tablesorter/jquery.tablesorter.js'
+'bundles/sfimmo/js/tablesorter/tables.js'
+'bundles/sfimmo/js/angular.js'
+'bundles/sfimmo/js/angular-loader.js'
+'bundles/sfimmo/js/client/app.js'
+'bundles/sfimmo/js/client/services-all.js'
+'bundles/sfimmo/js/client/user.js'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+
+<!-- Page Specific Plugins -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+
+</body>
+</html>

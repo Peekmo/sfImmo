@@ -5,3 +5,6 @@ services:
 #    peekmo_sf_immo.example:
 #        class: %peekmo_sf_immo.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+  pk.immo.utils:
+    class: Peekmo\SfImmoBundle\Utils\ImmoService
