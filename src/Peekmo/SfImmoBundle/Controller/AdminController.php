@@ -23,6 +23,6 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return new Response('Test');
+        return $this->render('PeekmoSfImmoBundle:Admin:admin_base.html.twig');
     }
 } 

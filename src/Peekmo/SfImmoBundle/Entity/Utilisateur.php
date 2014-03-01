@@ -59,9 +59,9 @@ class Utilisateur
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="recherches", type="object")
+     * @ORM\OneToMany(targetEntity="Recherche", mappedBy="user")
      */
-//    private $recherches;
+    private $recherches;
 
 
     /**

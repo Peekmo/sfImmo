@@ -19,7 +19,7 @@ class AuthController extends Controller
 {
     /**
      * @param Request $request
-     * @Route("/register")
+     * @Route("/register", name="register")
      * @return mixed
      */
     public function registerController(Request $request)

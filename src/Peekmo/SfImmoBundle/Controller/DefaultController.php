@@ -12,7 +12,7 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/")
+     * @Route("/", name="index")
      */
     public function indexAction(Request $request)
     {
