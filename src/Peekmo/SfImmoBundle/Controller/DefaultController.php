@@ -18,4 +18,16 @@ class DefaultController extends Controller
     {
         return $this->render('PeekmoSfImmoBundle:Default:client_base.html.twig');
     }
+
+    /**
+     * @param Request $request
+     * @param int     $num
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/error/{num}")
+     */
+    public function errorAction(Request $request, $num)
+    {
+        return $this->render('PeekmoSfImmoBundle:Default\Errors:' . $num . '.html.twig');
+    }
 } 

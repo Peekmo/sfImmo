@@ -8,3 +8,8 @@ services:
 
   pk.immo.utils:
     class: Peekmo\SfImmoBundle\Utils\ImmoService
+
+  pk.immo.rights_listener:
+    class: Peekmo\SfImmoBundle\Events\RightsListener
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
