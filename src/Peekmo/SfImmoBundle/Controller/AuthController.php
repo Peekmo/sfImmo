@@ -6,6 +6,7 @@ use Peekmo\SfImmoBundle\Entity\Utilisateur;
 use Peekmo\SfImmoBundle\Utils\ImmoResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -68,5 +69,16 @@ class AuthController extends Controller
         $url = $this->get('pk.immo.utils')->url($request);
 
         return new ImmoResponse(true, 302, $url);
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/logout", name="logout")
+     * @return mixed
+     */
+    public function logoutController(Request $request)
+    {
+        $request->getSession()->remove('user');
+        return new RedirectResponse('/');
     }
 } 

@@ -59,7 +59,7 @@ class Utilisateur
     /**
      * @var \stdClass
      *
-     * @ORM\OneToMany(targetEntity="Recherche", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Recherche", mappedBy="user", cascade={"persist", "remove"})
      */
     private $recherches;
 

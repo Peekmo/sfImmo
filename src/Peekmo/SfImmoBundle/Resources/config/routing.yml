@@ -9,3 +9,7 @@ default:
 admin:
   resource: "@PeekmoSfImmoBundle/Controller/AdminController.php"
   type: annotation
+
+admin_json:
+  resource: "@PeekmoSfImmoBundle/Controller/AdminJsonController.php"
+  type: annotation

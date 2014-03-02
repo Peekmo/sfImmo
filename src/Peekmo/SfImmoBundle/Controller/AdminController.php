@@ -23,6 +23,16 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('PeekmoSfImmoBundle:Admin:admin_base.html.twig');
+        return $this->render('PeekmoSfImmoBundle:Admin:admin_index.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/equipements", name="admin_stuff")
+     */
+    public function stuffAction(Request $request)
+    {
+        return $this->render('PeekmoSfImmoBundle:Admin:admin_stuff.html.twig');
     }
 } 

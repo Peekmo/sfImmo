@@ -12,12 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Bien
 {
-    const ETAT_PUBLIE = 0;
-    const ETAT_DEPUBLIE = 1;
-    const ETAT_VENDU = 2;
+    const ETAT_PUBLIE = 'publié';
+    const ETAT_DEPUBLIE = 'dépublié';
+    const ETAT_VENDU = 'vendu';
 
-    const MAISON = 0;
-    const APPARTEMENT = 1;
+    const MAISON = 'maison';
+    const APPARTEMENT = 'appartement';
 
     /**
      * @var integer
@@ -29,9 +29,9 @@ class Bien
     private $id;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="etat", type="smallint")
+     * @ORM\Column(name="etat", type="string", length=255)
      */
     private $etat;
 
@@ -43,6 +43,20 @@ class Bien
     private $prix;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="typeTarif", type="string", length=255, nullable=true)
+     */
+    private $typeTarif;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeDispo", type="string", length=255)
+     */
+    private $typeDispo;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="surfacehab", type="integer")
@@ -52,42 +66,42 @@ class Bien
     /**
      * @var integer
      *
-     * @ORM\Column(name="chambres", type="smallint")
+     * @ORM\Column(name="chambres", type="smallint", nullable=true)
      */
     private $chambres;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="surfaceterrain", type="integer")
+     * @ORM\Column(name="surfaceterrain", type="integer", nullable=true)
      */
     private $surfaceterrain;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="pieces", type="smallint")
+     * @ORM\Column(name="pieces", type="smallint", nullable=true)
      */
     private $pieces;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="sdb", type="smallint")
+     * @ORM\Column(name="sdb", type="smallint", nullable=true)
      */
     private $sdb;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="wc", type="smallint")
+     * @ORM\Column(name="wc", type="smallint", nullable=true)
      */
     private $wc;
 
     /**
      * @var \stdClass
      *
-     * @ORM\ManyToMany(targetEntity="Media")
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
      * @ORM\JoinTable(name="BienMedia",
      *      joinColumns={@ORM\JoinColumn(name="idBien", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="idMedia", referencedColumnName="id")}
@@ -98,21 +112,21 @@ class Bien
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reference", type="string", length=255)
+     * @ORM\Column(name="reference", type="string", length=255, nullable=true)
      */
     private $reference;
 
     /**
      * @var \stdClass
      *
-     * @ORM\ManyToMany(targetEntity="Equipement")
+     * @ORM\ManyToMany(targetEntity="Equipement", cascade={"persist"})
      * @ORM\JoinTable(name="BienEquipement",
      *      joinColumns={@ORM\JoinColumn(name="idBien", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="idEquipement", referencedColumnName="id")}
@@ -128,30 +142,30 @@ class Bien
     private $nom;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="type", type="integer")
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="pleinPied", type="boolean")
+     * @ORM\Column(name="pleinPied", type="boolean", nullable=true)
      */
     private $pleinPied;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="vueMer", type="boolean")
+     * @ORM\Column(name="vueMer", type="boolean", nullable=true)
      */
     private $vueMer;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="etage", type="integer")
+     * @ORM\Column(name="etage", type="integer", nullable=true)
      */
     private $etage;
 
@@ -554,5 +568,58 @@ class Bien
         return $this->vueMer;
     }
 
+    /**
+     * @param string $typeTarif
+     * @return $this
+     */
+    public function setTypeTarif($typeTarif)
+    {
+        $this->typeTarif = $typeTarif;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeTarif()
+    {
+        return $this->typeTarif;
+    }
+
+    /**
+     * @param string $typeDispo
+     * @return $this
+     */
+    public function setTypeDispo($typeDispo)
+    {
+        $this->typeDispo = $typeDispo;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeDispo()
+    {
+        return $this->typeDispo;
+    }
+
+    public function getTypesDispo()
+    {
+        return array(
+            'Location',
+            'Vente'
+        );
+    }
+
+    public function getTypesTarif()
+    {
+        return array(
+            'semaine',
+            'mois',
+            'année'
+        );
+    }
 }
