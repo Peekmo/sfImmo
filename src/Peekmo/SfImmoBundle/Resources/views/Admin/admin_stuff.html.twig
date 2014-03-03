@@ -14,9 +14,18 @@
                     <div class="panel-body">
                         <div class="list-group">
                             <a href="#" class="list-group-item" ng-repeat="equipement in stuff">
-                                <span class="badge btn">Supprimer</span>
-                                <span class="badge btn">Éditer</span>
-                                [{ equipement.nom }]
+                                <span class="badge btn" ng-click="delete(equipement.id)">Supprimer</span>
+                                <span class="badge btn" ng-click="edit.index = equipement.id; edit.value = equipement.nom;">Éditer</span>
+                                <div ng-show="edit.index != equipement.id">
+                                    [{ equipement.nom }]
+                                </div>
+                                <div ng-show="edit.index == equipement.id">
+                                    <form class="form-inline " role="form">
+                                        <input type="text" ng-model="edit.value" class="form-control"/>
+                                        <button class="btn btn-success" ng-click="put(equipement.id)">Valider</button>
+                                        <button class="btn btn-warning" ng-click="edit.index = -1">Annuler</button>
+                                    </form>
+                                </div>
                             </a>
                             <a href="#" class="list-group-item">
                                 <form class="form-inline " role="form">

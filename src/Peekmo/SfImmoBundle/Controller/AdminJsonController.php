@@ -26,6 +26,13 @@ class AdminJsonController extends Controller
         $em->flush();
     }
 
+    private function remove($entity)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($entity);
+        $em->flush();
+    }
+
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -39,12 +46,53 @@ class AdminJsonController extends Controller
         $final = array();
         foreach ($equipements as $equip) {
             $final[] = array(
-                'id' => $equip->getId(),
+                'id'  => $equip->getId(),
                 'nom' => $equip->getNom()
             );
         }
 
         return new ImmoResponse(true, 200, 'Success', $final);
+    }
+
+    /**
+     * @param Request $request
+     * @param int     $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/equipements/{id}")
+     * @Method({"DELETE"})
+     */
+    public function deleteEquipementsAction(Request $request, $id)
+    {
+        if (!$equipement = $this->getDoctrine()->getRepository('PeekmoSfImmoBundle:Equipement')->findOneById($id)) {
+            return new ImmoResponse(false, 404, 'Equipement not found');
+        }
+
+        $this->remove($equipement);
+
+        return $this->getEquipementsAction($request);
+    }
+
+    /**
+     * @param Request $request
+     * @param int     $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/equipements/{id}")
+     * @Method({"PUT"})
+     */
+    public function putEquipementsAction(Request $request, $id)
+    {
+        if (!$equipement = $this->getDoctrine()->getRepository('PeekmoSfImmoBundle:Equipement')->findOneById($id)) {
+            return new ImmoResponse(false, 404, 'Equipement not found');
+        }
+
+        if (!$nom = $request->request->get('nom')) {
+            return new ImmoResponse(false, 412, 'Pas de nom donné');
+        }
+
+        $equipement->setNom($nom);
+        $this->save($equipement);
+
+        return $this->getEquipementsAction($request);
     }
 
     /**
