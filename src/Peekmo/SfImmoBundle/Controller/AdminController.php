@@ -35,4 +35,14 @@ class AdminController extends Controller
     {
         return $this->render('PeekmoSfImmoBundle:Admin:admin_stuff.html.twig');
     }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/logements", name="admin_logements")
+     */
+    public function logementsAction(Request $request)
+    {
+        return $this->render('PeekmoSfImmoBundle:Admin:admin_logement.html.twig');
+    }
 } 
