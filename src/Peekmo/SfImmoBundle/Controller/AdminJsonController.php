@@ -2,6 +2,7 @@
 
 namespace Peekmo\SfImmoBundle\Controller;
 
+use Peekmo\SfImmoBundle\Entity\Bien;
 use Peekmo\SfImmoBundle\Entity\Equipement;
 use Peekmo\SfImmoBundle\Utils\ImmoResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -31,6 +32,46 @@ class AdminJsonController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($entity);
         $em->flush();
+    }
+
+    /**
+     * @return ImmoResponse
+     * @Route("/batiments")
+     * @Method({"GET"})
+     */
+    public function getBatimentsAction()
+    {
+        return new ImmoResponse(true, 200, 'Success', Bien::getBatiments());
+    }
+
+    /**
+     * @return ImmoResponse
+     * @Route("/dispos")
+     * @Method({"GET"})
+     */
+    public function getTypesDispoAction()
+    {
+        return new ImmoResponse(true, 200, 'Success', Bien::getTypesDispo());
+    }
+
+    /**
+     * @return ImmoResponse
+     * @Route("/tarifs")
+     * @Method({"GET"})
+     */
+    public function getTypesTarifAction()
+    {
+        return new ImmoResponse(true, 200, 'Success', Bien::getTypesTarif());
+    }
+
+    /**
+     * @return ImmoResponse
+     * @Route("/etats")
+     * @Method({"GET"})
+     */
+    public function getEtatsAction()
+    {
+        return new ImmoResponse(true, 200, 'Success', Bien::getEtats());
     }
 
     /**

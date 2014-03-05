@@ -606,20 +606,41 @@ class Bien
         return $this->typeDispo;
     }
 
-    public function getTypesDispo()
+    public static function getBatiments()
     {
         return array(
-            'Location',
-            'Vente'
+            'Maison',
+            'Appartement',
+            'Studio'
         );
     }
 
-    public function getTypesTarif()
+    public static function getTypesDispo()
+    {
+        return array(
+            'Vente',
+            'Location à la semaine',
+            'Location au mois',
+            'Location à l\'année'
+        );
+    }
+
+    public static function getTypesTarif()
     {
         return array(
             'semaine',
             'mois',
             'année'
+        );
+    }
+
+    public static function getEtats()
+    {
+        return array(
+            'Publié',
+            'Vendu',
+            'Loué',
+            'Dépublié'
         );
     }
 }
