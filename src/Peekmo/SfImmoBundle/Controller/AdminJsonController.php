@@ -157,4 +157,24 @@ class AdminJsonController extends Controller
 
         return $this->getEquipementsAction($request);
     }
+
+    public function postLogementsAction(Request $request)
+    {
+
+    }
+
+    public function putLogementsAction(Request $request)
+    {
+
+    }
+
+    public function getLogementsAction(Request $request)
+    {
+
+    }
+
+    public function deleteLogementsAction(Request $request)
+    {
+
+    }
 } 
