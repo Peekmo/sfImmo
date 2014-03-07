@@ -108,20 +108,24 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Équipements -->
-            <div class="col-lg-6">
+        </div>
+        <div id="page-wrapper">
+        <!-- Équipements -->
+            <div class="col-lg-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-clock-o"></i> Équipements</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="col-md-6" ng-repeat="equip in stuff">
+                        <div class="col-md-3" ng-repeat="equip in stuff">
                             <input type="checkbox" id="equip.id"/>
                             <label for="equip.id">[{ equip.nom }]</label>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-12 center">
+                <button class="btn btn-large btn-success">Créer</button>
             </div>
         </div>
     </div>
