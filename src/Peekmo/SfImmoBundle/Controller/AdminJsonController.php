@@ -160,7 +160,21 @@ class AdminJsonController extends Controller
 
     public function postLogementsAction(Request $request)
     {
+        $data = $request->request->all();
 
+        $bien = new Bien();
+
+        foreach ($data as $key => $value) {
+            $method = 'set'.ucfirst($key);
+
+            if (method_exists($bien, $method)) {
+                $bien->$method($value);
+            }
+        }
+
+        $this->save($bien);
+
+        return $this->getEquipementsAction($request);
     }
 
     public function putLogementsAction(Request $request)
