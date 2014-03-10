@@ -158,9 +158,15 @@ class AdminJsonController extends Controller
         return $this->getEquipementsAction($request);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/logements")
+     * @Method({"POST"})
+     */
     public function postLogementsAction(Request $request)
     {
-        $data = $request->request->all();
+        $data = json_decode($request->getContent(), true);
 
         $bien = new Bien();
 
@@ -172,6 +178,12 @@ class AdminJsonController extends Controller
             }
         }
 
+        $equipements = array();
+        foreach ($data['equipements'] as $id) {
+            $equipements[] = $this->getDoctrine()->getRepository('PeekmoSfImmoBundle:Equipement')->findOneById($id);
+        }
+
+        $bien->setEquipements($equipements);
         $this->save($bien);
 
         return $this->getEquipementsAction($request);
