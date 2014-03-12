@@ -194,6 +194,12 @@ class AdminJsonController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/logements")
+     * @Method({"GET"})
+     */
     public function getLogementsAction(Request $request)
     {
 

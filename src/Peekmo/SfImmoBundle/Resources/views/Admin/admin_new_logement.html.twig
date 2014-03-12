@@ -1,0 +1,132 @@
+{% extends 'PeekmoSfImmoBundle:Admin:admin_base.html.twig' %}
+
+{% block title %}{{ parent() }} - Logements{% endblock %}
+
+{% block body %}
+    <div id="wrapper" ng-controller="Logements">
+        <div id="page-wrapper">
+            <!-- Général -->
+            <div class="col-lg-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-clock-o"></i> Général</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="titre" class="col-sm-4 control-label">Titre</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="titre" ng-model="new.nom"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reference" class="col-sm-4 control-label">Référence</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="reference" ng-model="new.reference"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="batiment" class="col-sm-4 control-label">Bâtiment</label>
+                                <div class="col-sm-8">
+                                    <select ng-model="new.batiment" class="form-control" ng-options="value for value in batiments"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="type" class="col-sm-4 control-label">Type </label>
+                                <div class="col-sm-8">
+                                    <select ng-model="new.typeDispo" class="form-control" ng-options="value for value in types"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="etat" class="col-sm-4 control-label">État</label>
+                                <div class="col-sm-8">
+                                    <select ng-model="new.etat" class="form-control" ng-options="value for value in etats"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="prix" class="col-sm-4 control-label">Prix</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="prix" ng-model="new.prix"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-4 control-label">Description</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" id="description" ng-model="new.description"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informations -->
+            <div class="col-lg-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-clock-o"></i> Informations</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="surfaceterrain" class="col-sm-4 control-label">Surface terrain</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="surfaceTerrain" ng-model="new.surfaceterrain"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="surfacehab" class="col-sm-4 control-label">Surface habitable</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="surfaceHabitable" ng-model="new.surfacehab"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pieces" class="col-sm-4 control-label">Pièces</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="pieces" ng-model="new.pieces"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="chambres" class="col-sm-4 control-label">Chambres</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="chambres" ng-model="new.chambres"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sdb" class="col-sm-4 control-label">Salles de bain</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="sdb" ng-model="new.sdb"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="wc" class="col-sm-4 control-label">Toilettes</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="wc" ng-model="new.wc"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-wrapper">
+            <!-- Équipements -->
+            <div class="col-lg-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-clock-o"></i> Équipements</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-3" ng-repeat="equip in stuff">
+                            <input type="checkbox" id="equip.id"/>
+                            <label for="equip.id">[{ equip.nom }]</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 center">
+                <button class="btn btn-large btn-success" ng-click="creerLogement()">Créer</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
