@@ -171,7 +171,7 @@ class AdminJsonController extends Controller
         $bien = new Bien();
 
         foreach ($data as $key => $value) {
-            $method = 'set'.ucfirst($key);
+            $method = 'set' . ucfirst($key);
 
             if (method_exists($bien, $method)) {
                 $bien->$method($value);
@@ -202,11 +202,63 @@ class AdminJsonController extends Controller
      */
     public function getLogementsAction(Request $request)
     {
+        $logements = $this->getDoctrine()->getRepository('PeekmoSfImmoBundle:Bien')->findAll();
 
+        $data = array();
+        /** @var Bien $logement */
+        foreach ($logements as $logement) {
+            $data[] = array(
+                'id'             => $logement->getId(),
+                'nom'            => $logement->getNom(),
+                'reference'      => $logement->getReference(),
+                'type'           => $logement->getType(),
+                'typeDispo'      => $logement->getTypeDispo(),
+                'etat'           => $logement->getEtat(),
+                'prix'           => $logement->getPrix(),
+                'typeTarif'      => $logement->getTypesTarif(),
+                'description'    => $logement->getDescription(),
+                'surfaceterrain' => $logement->getSurfaceterrain(),
+                'surfacehab'     => $logement->getSurfacehab(),
+                'pieces'         => $logement->getPieces(),
+                'chambres'       => $logement->getChambres(),
+                'sdb'            => $logement->getSdb(),
+                'wc'             => $logement->getWc(),
+                'equipements'    => $this->parseEquipements($logement->getEquipements())
+            );
+        }
+
+        return new ImmoResponse(true, 200, $data);
     }
 
-    public function deleteLogementsAction(Request $request)
+    /**
+     * @param Request $request
+     * @param int     $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/delete/{id}")
+     * @Method({"DELETE"})
+     */
+    public function deleteLogementsAction(Request $request, $id)
     {
+        if (!$logement = $this->getDoctrine()->getRepository('PeekmoSfImmoBundle:Bien')->findOneById($id)) {
+            return new ImmoResponse(false, 404, 'Logement not found');
+        }
 
+        $this->remove($logement);
+
+        return $this->getEquipementsAction($request);
+    }
+
+    private function parseEquipements(array $equipements)
+    {
+        $data = array();
+        /** @var Equipement $equipement */
+        foreach ($equipements as $equipement) {
+            $data[] = array(
+                'id'  => $equipement->getId(),
+                'nom' => $equipement->getNom()
+            );
+        }
+
+        return $data;
     }
 } 
